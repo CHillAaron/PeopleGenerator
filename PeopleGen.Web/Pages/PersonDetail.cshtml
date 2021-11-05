@@ -1,0 +1,121 @@
+﻿@page "{id}"
+@model PeopleGen.Web.Pages.PersonDetailModel
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@using PeopleGen.Core
+@{
+}
+
+    <div class="container d-flex justify-content-center">
+        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
+            <div class="container">
+                <a class="navbar-brand" href="#">World Generator</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Info</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">New City</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">New Person</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">New Business</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" style="border-width: 2px;border-style: solid;">
+                <h3>Your Town names</h3>
+                <hr style="border-width: 5px;border-style: none;" />
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Column 1</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="CityDetails.html">City 1</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">City 2</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#">City 3</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col">
+                <h1 class="d-flex d-md-flex justify-content-md-center">@Model.PeopleModel.FirstName @Model.PeopleModel.LastName </h1>
+                <p class="text-center">Alignment: @Model.PeopleModel.Alignment</p>
+                <hr />
+                <ul class="list-unstyled d-flex justify-content-between">
+                    <li>STR: @Model.PeopleModel.Strength</li>
+                    <li>Dex: @Model.PeopleModel.Dexterity</li>
+                    <li>Con: @Model.PeopleModel.Constitution</li>
+                    <li>Int: @Model.PeopleModel.Intelligence</li>
+                    <li>Wis: @Model.PeopleModel.Wisdom</li>
+                    <li>Char: @Model.PeopleModel.Charisma</li>
+                </ul>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Status: </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nobility: Not Set</td>
+                                <td>Race: @Model.SpeciesInfo.SpeciesName</td>
+                            </tr>
+                            <tr>
+                                <td>Age: @Model.PeopleModel.Age</td>
+                                <td>Personality: Not Set</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Family</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Spouse: Not Set</td>
+                                <td>Kids: Not Set</td>
+                            </tr>
+                            <tr>
+                                <td>Siblings: Not Set</td>
+                                <td>Cell 4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Personal: Not Set</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Fears: Not Set</td>
+                                <td>Weakness: Not Set</td>
+                            </tr>
+                            <tr>
+                                <td>Strengths: Not Set</td>
+                                <td>Flaw/secret: Not Set</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+

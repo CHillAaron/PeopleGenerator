@@ -30,13 +30,13 @@ namespace PeopleGen.Dal.Migrations
                     LastName = table.Column<string>(type: "text", nullable: false),
                     Gender = table.Column<string>(type: "text", nullable: false),
                     Age = table.Column<int>(type: "integer", nullable: false),
-                    strength = table.Column<int>(type: "integer", nullable: false),
+                    Strength = table.Column<int>(type: "integer", nullable: false),
                     Dexterity = table.Column<int>(type: "integer", nullable: false),
                     Constitution = table.Column<int>(type: "integer", nullable: false),
                     Intelligence = table.Column<int>(type: "integer", nullable: false),
                     Wisdom = table.Column<int>(type: "integer", nullable: false),
                     Charisma = table.Column<int>(type: "integer", nullable: false),
-                    Alignment = table.Column<string>(type: "text", nullable: false),
+                    Alignment = table.Column<string>(type: "text", nullable: true),
                     SpeciesId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -62,12 +62,12 @@ namespace PeopleGen.Dal.Migrations
 
             migrationBuilder.InsertData(
                 table: "Persons",
-                columns: new[] { "PersonId", "Age", "Alignment", "Charisma", "Constitution", "Dexterity", "FirstName", "Gender", "Intelligence", "LastName", "SpeciesId", "Wisdom", "strength" },
+                columns: new[] { "PersonId", "Age", "Alignment", "Charisma", "Constitution", "Dexterity", "FirstName", "Gender", "Intelligence", "LastName", "SpeciesId", "Strength", "Wisdom" },
                 values: new object[,]
                 {
-                    { 1, 46, "Neutral Neutral", 18, 10, 14, "Talice", "Female", 15, "Nenna", 1, 18, 10 },
-                    { 3, 30, "Chaotic Neutral", 13, 19, 19, "Denede", "Male", 18, "FireStarter", 1, 15, 10 },
-                    { 2, 20, "Chaotic Neutral", 12, 116, 13, "Narook", "Male", 11, "Vunakian", 2, 11, 20 }
+                    { 1, 46, "Neutral Neutral", 18, 10, 14, "Talice", "Female", 15, "Nenna", 1, 10, 18 },
+                    { 3, 30, "Chaotic Neutral", 13, 19, 19, "Denede", "Male", 18, "FireStarter", 1, 10, 15 },
+                    { 2, 20, "Chaotic Neutral", 12, 116, 13, "Narook", "Male", 11, "Vunakian", 2, 20, 11 }
                 });
 
             migrationBuilder.CreateIndex(

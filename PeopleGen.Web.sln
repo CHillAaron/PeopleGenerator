@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleGen.Dal", "PeopleGen.
 		{89191B8B-1441-41F5-A0D3-3B1C390DA299} = {89191B8B-1441-41F5-A0D3-3B1C390DA299}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeopleGen.Dal.Test", "PeopleGen.Dal.Test\PeopleGen.Dal.Test.csproj", "{73DA8008-FC60-4F5D-9983-238ACD5F637D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeopleGen.Dal.Test", "PeopleGen.Dal.Test\PeopleGen.Dal.Test.csproj", "{73DA8008-FC60-4F5D-9983-238ACD5F637D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

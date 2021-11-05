@@ -9,7 +9,7 @@ using PeopleGen.Dal;
 namespace PeopleGen.Dal.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    [Migration("20211005042236_init")]
+    [Migration("20211012212058_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,6 @@ namespace PeopleGen.Dal.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Alignment")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("Charisma")
@@ -61,10 +60,10 @@ namespace PeopleGen.Dal.Migrations
                     b.Property<int>("SpeciesId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("Wisdom")
+                    b.Property<int>("Strength")
                         .HasColumnType("integer");
 
-                    b.Property<int>("strength")
+                    b.Property<int>("Wisdom")
                         .HasColumnType("integer");
 
                     b.HasKey("PersonId");
@@ -87,8 +86,8 @@ namespace PeopleGen.Dal.Migrations
                             Intelligence = 15,
                             LastName = "Nenna",
                             SpeciesId = 1,
-                            Wisdom = 18,
-                            strength = 10
+                            Strength = 10,
+                            Wisdom = 18
                         },
                         new
                         {
@@ -103,8 +102,8 @@ namespace PeopleGen.Dal.Migrations
                             Intelligence = 11,
                             LastName = "Vunakian",
                             SpeciesId = 2,
-                            Wisdom = 11,
-                            strength = 20
+                            Strength = 20,
+                            Wisdom = 11
                         },
                         new
                         {
@@ -119,8 +118,8 @@ namespace PeopleGen.Dal.Migrations
                             Intelligence = 18,
                             LastName = "FireStarter",
                             SpeciesId = 1,
-                            Wisdom = 15,
-                            strength = 10
+                            Strength = 10,
+                            Wisdom = 15
                         });
                 });
 

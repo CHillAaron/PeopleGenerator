@@ -1,4 +1,28 @@
 ﻿@page
 @model PeopleGen.Web.Pages.PeopleModel
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@using PeopleGen.Core
 @{
+}
+<h1>Add a new Person</h1>
+<form asp-page="/People" method="post">
+    <label for="numToCreate">Amount Of People to create</label>
+    <input type="number" name="numToCreate" value="1" />
+    <button>Submit</button>
+</form>
+
+
+<hr />
+@if (this.Model.AllPeople != null)
+{
+    <h1> All People</h1>
+    <p> People Count: @this.Model.AllPeople.Count</p>
+    <div>
+        <ul>
+            @foreach (Person p in this.Model.AllPeople)
+            {
+                <li><a asp-page="/PersonDetail" asp-route-id="@p.PersonId">@p.FirstName @p.LastName</a></li>
+            }
+        </ul>
+    </div>
 }

@@ -15,29 +15,26 @@ namespace PeopleGen.Core
         public string Gender { get; set; }
         [Required]
         public int Age { get; set; }
-        
+
         //Ability stats
-        [Required]
-        public int strength { get; set; }
-        [Required]
+        //[Required]
+        public int Strength { get; set; }
+        //[Required]
         public int Dexterity { get; set; }
-        [Required]
+        //[Required]
         public int Constitution { get; set; }
-        [Required]
+        //[Required]
         public int Intelligence { get; set; }
-        [Required]
+        //[Required]
         public int Wisdom { get; set; }
-        [Required]
+        //[Required]
         public int Charisma { get; set; }
-
         //Chariteristics
-        [Required]
+        //[Required]
         public string Alignment { get; set; }
-
-
-
         [Required]
         public int SpeciesId { get; set; }
         public Species Species { get; set; }
+
     }
 }
