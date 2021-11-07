@@ -1,6 +1,36 @@
 ﻿@page
 @model PeopleGen.Web.Pages.CreateCityModel
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@using PeopleGen.Core
 @{
 }
 
 <h1>City Create</h1>
+<form asp-page="/CreateCity" method="post">
+    <label for="numToCreate">Population of the city</label>
+    <select name="populationSize">
+        <option value="tiny" selected="selected">Tiny village (~ 50 people)</option>
+        <option value="small">small village (~ 300 people)</option>
+        <option value="medium">medium village (~ 1000 people)</option>
+        <option value="large"> City (~ 5000 people)</option>
+        <option value="xLarge">Kingdom (~25000 people)</option>
+    </select>
+    <button>Submit</button>
+</form>
+@if (this.Model != null)
+{
+    <h1> City</h1>
+    <p> People Count: @this.Model remaining</p>
+    <div>
+        <ol>
+            @foreach (Person c in this.Model.listOfPeople)
+            {
+                if (c.PersonId > 100)
+                {
+                    break;
+                }
+                <li><a asp-page="/PersonDetail" asp-route-id="@c.PersonId">@c.FirstName @c.LastName</a></li>
+            }
+        </ol>
+    </div>
+}

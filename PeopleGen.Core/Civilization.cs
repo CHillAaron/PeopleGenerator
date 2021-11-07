@@ -17,12 +17,14 @@ namespace PeopleGen.Core
         public string TypeOfRule { get; set; }
         [Required]
         public string Location { get; set; }
-        [Required]
+        //[Required]
         public string Ideology { get; set; }
         //Population
-        public List<Person> persons { get; set; } = new List<Person>();
+        public List<Person> Population { get; set; } = new List<Person>();
 
         //Businesses
-        //public List<Business> business { get; set; } = new List<Business>();                                                          
+        //public List<Business> business { get; set; } = new List<Business>();
+        //
+
     }
 }

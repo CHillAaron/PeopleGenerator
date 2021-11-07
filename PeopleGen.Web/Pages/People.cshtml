@@ -16,13 +16,17 @@
 @if (this.Model.AllPeople != null)
 {
     <h1> All People</h1>
-    <p> People Count: @this.Model.AllPeople.Count</p>
+    <p> People Count: @this.Model.AllPeople.Count remaining</p>
     <div>
-        <ul>
+        <ol>
             @foreach (Person p in this.Model.AllPeople)
             {
+                if(p.PersonId > 100)
+                {
+                    break;
+                }
                 <li><a asp-page="/PersonDetail" asp-route-id="@p.PersonId">@p.FirstName @p.LastName</a></li>
             }
-        </ul>
+        </ol>
     </div>
 }

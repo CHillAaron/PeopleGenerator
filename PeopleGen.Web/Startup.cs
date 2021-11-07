@@ -28,6 +28,7 @@ namespace PeopleGen.Web
         {
             services.AddRazorPages();
             services.AddScoped<PeopleService>();
+            services.AddScoped<CityServices>();
             services.AddDbContext<PeopleDbContext>(options =>
                      options.UseNpgsql(Configuration.GetConnectionString("connection")));
         }

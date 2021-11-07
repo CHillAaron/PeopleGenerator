@@ -25,11 +25,9 @@ namespace PeopleGen.Dal
             return  this._context.Persons.Where(person => person.FirstName == name).FirstOrDefault();
         }
         public Person GetPersonById(int id)
-        {
             {
                 return this._context.Persons.Where(person => person.PersonId == id).FirstOrDefault();
             }
-        }
         public void AddPerson(Person newPerson)
         {
             serviceDbContext.Persons.Add(newPerson);

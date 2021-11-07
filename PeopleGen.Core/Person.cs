@@ -35,6 +35,8 @@ namespace PeopleGen.Core
         [Required]
         public int SpeciesId { get; set; }
         public Species Species { get; set; }
+        public int CityId { get; set; }
+        public Civilization City { get; set; }
 
     }
 }

@@ -10,8 +10,8 @@ using PeopleGen.Dal;
 namespace PeopleGen.Dal.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    [Migration("20211027194609_moreModel")]
-    partial class moreModel
+    [Migration("20211107161615_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,21 +20,6 @@ namespace PeopleGen.Dal.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.10")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            modelBuilder.Entity("BusinessInventory", b =>
-                {
-                    b.Property<int>("BusinessId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("InventoryId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("BusinessId", "InventoryId");
-
-                    b.HasIndex("InventoryId");
-
-                    b.ToTable("BusinessInventory");
-                });
 
             modelBuilder.Entity("PeopleGen.Core.Business", b =>
                 {
@@ -54,12 +39,25 @@ namespace PeopleGen.Dal.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("CivilizationCityId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("InventoryId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("NumOfEmployees")
                         .HasColumnType("integer");
 
                     b.HasKey("BusinessId");
 
                     b.HasIndex("BusinessOwnerPersonId");
+
+                    b.HasIndex("CivilizationCityId");
+
+                    b.HasIndex("InventoryId");
 
                     b.ToTable("Business");
                 });
@@ -76,7 +74,6 @@ namespace PeopleGen.Dal.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Ideology")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Location")
@@ -142,7 +139,7 @@ namespace PeopleGen.Dal.Migrations
                     b.Property<int>("Charisma")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CivilizationCityId")
+                    b.Property<int>("CityId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Constitution")
@@ -177,61 +174,11 @@ namespace PeopleGen.Dal.Migrations
 
                     b.HasKey("PersonId");
 
-                    b.HasIndex("CivilizationCityId");
+                    b.HasIndex("CityId");
 
                     b.HasIndex("SpeciesId");
 
                     b.ToTable("Persons");
-
-                    b.HasData(
-                        new
-                        {
-                            PersonId = 1,
-                            Age = 46,
-                            Alignment = "Neutral Neutral",
-                            Charisma = 18,
-                            Constitution = 10,
-                            Dexterity = 14,
-                            FirstName = "Talice",
-                            Gender = "Female",
-                            Intelligence = 15,
-                            LastName = "Nenna",
-                            SpeciesId = 1,
-                            Strength = 10,
-                            Wisdom = 18
-                        },
-                        new
-                        {
-                            PersonId = 2,
-                            Age = 20,
-                            Alignment = "Chaotic Neutral",
-                            Charisma = 12,
-                            Constitution = 116,
-                            Dexterity = 13,
-                            FirstName = "Narook",
-                            Gender = "Male",
-                            Intelligence = 11,
-                            LastName = "Vunakian",
-                            SpeciesId = 2,
-                            Strength = 20,
-                            Wisdom = 11
-                        },
-                        new
-                        {
-                            PersonId = 3,
-                            Age = 30,
-                            Alignment = "Chaotic Neutral",
-                            Charisma = 13,
-                            Constitution = 19,
-                            Dexterity = 19,
-                            FirstName = "Denede",
-                            Gender = "Male",
-                            Intelligence = 18,
-                            LastName = "FireStarter",
-                            SpeciesId = 1,
-                            Strength = 10,
-                            Wisdom = 15
-                        });
                 });
 
             modelBuilder.Entity("PeopleGen.Core.Species", b =>
@@ -267,35 +214,32 @@ namespace PeopleGen.Dal.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BusinessInventory", b =>
-                {
-                    b.HasOne("PeopleGen.Core.Business", null)
-                        .WithMany()
-                        .HasForeignKey("BusinessId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PeopleGen.Core.Inventory", null)
-                        .WithMany()
-                        .HasForeignKey("InventoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("PeopleGen.Core.Business", b =>
                 {
                     b.HasOne("PeopleGen.Core.Person", "BusinessOwner")
                         .WithMany()
                         .HasForeignKey("BusinessOwnerPersonId");
 
+                    b.HasOne("PeopleGen.Core.Civilization", "Civilization")
+                        .WithMany()
+                        .HasForeignKey("CivilizationCityId");
+
+                    b.HasOne("PeopleGen.Core.Inventory", null)
+                        .WithMany("business")
+                        .HasForeignKey("InventoryId");
+
                     b.Navigation("BusinessOwner");
+
+                    b.Navigation("Civilization");
                 });
 
             modelBuilder.Entity("PeopleGen.Core.Person", b =>
                 {
-                    b.HasOne("PeopleGen.Core.Civilization", null)
-                        .WithMany("persons")
-                        .HasForeignKey("CivilizationCityId");
+                    b.HasOne("PeopleGen.Core.Civilization", "City")
+                        .WithMany("Population")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PeopleGen.Core.Species", "Species")
                         .WithMany("persons")
@@ -303,12 +247,19 @@ namespace PeopleGen.Dal.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("City");
+
                     b.Navigation("Species");
                 });
 
             modelBuilder.Entity("PeopleGen.Core.Civilization", b =>
                 {
-                    b.Navigation("persons");
+                    b.Navigation("Population");
+                });
+
+            modelBuilder.Entity("PeopleGen.Core.Inventory", b =>
+                {
+                    b.Navigation("business");
                 });
 
             modelBuilder.Entity("PeopleGen.Core.Species", b =>

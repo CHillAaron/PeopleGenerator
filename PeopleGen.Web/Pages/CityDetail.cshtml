@@ -1,0 +1,26 @@
+﻿@page "{id}"
+@model PeopleGen.Web.Pages.CityDetailModel
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@using PeopleGen.Core
+@{
+}
+
+<h1>Currently looking at City: @Model.CityModel.CityName</h1>
+
+
+@if (this.Model.CityModel.Population != null)
+{
+    <div>
+        <p> The population:</p>
+        <ol>
+            @foreach (var p in this.Model.CityModel.Population)
+            {
+                <li>@p.FirstName @p.LastName</li>
+            }
+        </ol>
+    </div>
+}
+else
+{
+    <p> Town is abondand</p>
+    }
