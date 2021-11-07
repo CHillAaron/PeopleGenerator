@@ -22,9 +22,10 @@ namespace PeopleGen.Core
         public int NumOfEmployees { get; set; }
         [Required]
         public int CityId { get; set; }
-        [Required]
         public Civilization Civilization { get; set; }
         [NotMapped]
         public List<Inventory> Inventory { get; set; } = new List<Inventory>();
+
+
     }
 }

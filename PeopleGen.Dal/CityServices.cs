@@ -11,12 +11,14 @@ namespace PeopleGen.Dal
     public class CityServices
     {
         private PeopleDbContext _context { get; }
-        //PeopleDbContext serviceDbContext = new PeopleDbContext();
         Random random = new Random();
+        private BusinessService _businessService;
 
-        public CityServices(PeopleDbContext context)
+
+        public CityServices(PeopleDbContext context, BusinessService businessService)
         {
             this._context = context;
+            this._businessService = businessService;
         }
         public List<Civilization> GetAllCities()
         {
@@ -63,20 +65,21 @@ namespace PeopleGen.Dal
             string Name = $"{size} {location}";
             //get Ideology
             //Create Business
-            
+            List<Business> newBusinesses = new List<Business>();
+            newBusinesses.Add( this._businessService.CreateBusiness(allPopulation, size));
 
             Civilization newCity = new Civilization()
             {
                 TypeOfRule = TypeOfRule,
                 Location = location,
                 Population = allPopulation,
-                CityName = location + " " + population
+                CityName = location + " " + population,
+                Businesses = newBusinesses
             };
             AddCity(newCity);
         }
         public int PopulationSize(string size)
         {
-                int population;
 
             switch (size)
             {
@@ -91,7 +94,7 @@ namespace PeopleGen.Dal
                 case ("xLarge"):
                     return random.Next(19678, 22341);
             }
-            return population = 0;
+            return 0;
         }
         public List<Person> AddPopulation(int populationAmount)
         {

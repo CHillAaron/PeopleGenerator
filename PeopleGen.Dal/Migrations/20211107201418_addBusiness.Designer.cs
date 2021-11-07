@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PeopleGen.Dal;
@@ -9,9 +10,10 @@ using PeopleGen.Dal;
 namespace PeopleGen.Dal.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    partial class PeopleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211107201418_addBusiness")]
+    partial class addBusiness
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace PeopleGen.Dal.Migrations
                     b.Property<int>("CityId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CivilizationCityId")
+                    b.Property<int>("CivilizationCityId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("InventoryId")
@@ -220,7 +222,9 @@ namespace PeopleGen.Dal.Migrations
 
                     b.HasOne("PeopleGen.Core.Civilization", "Civilization")
                         .WithMany("Businesses")
-                        .HasForeignKey("CivilizationCityId");
+                        .HasForeignKey("CivilizationCityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PeopleGen.Core.Inventory", null)
                         .WithMany("business")

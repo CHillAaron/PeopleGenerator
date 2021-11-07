@@ -28,22 +28,59 @@ namespace PeopleGen.Dal
             this._context.Add(newBusiness);
             this._context.SaveChanges();
         }
-        public void CreateBusiness()
+        public Business CreateBusiness(List<Person> population,  string size)
         {
-            string businessName;
-            string businessType;
-            Person businessOwner;
-            Civilization cityId;
-            List<Inventory> inventory;
-            //Business newBusiness = new Business()
-            //{
-            //    BusinessName = businessName,
-            //    BusinessType = businessType,
-            //    BusinessOwner = businessOwner,
-            //    CityId = cityId,
-            //    Inventory = inventory
+            Person businessOwner = GetBusinessOwner(population);
+            string businessType = GetBusinessType(size);
+            int cityId = (int)businessOwner.CityId;
+            //List<Inventory> inventory;
+            Business newBusiness = new Business()
+            {
+                BusinessName = $"{businessOwner.FirstName} {businessType}",
+                BusinessType = businessType,
+                BusinessOwner = businessOwner,
+                CityId = (int)businessOwner.CityId,
+                //Inventory = inventory
 
-            //}
+            };
+            return newBusiness;
+        }
+        public Person GetBusinessOwner(List<Person> population)
+        {
+            Dictionary<int, Person> people = population.ToDictionary(x => x.PersonId);
+            int populationIndex = random.Next(0, people.Count);
+            Person selectedPerson = people.ElementAt(populationIndex).Value;
+            return selectedPerson;
+        }
+        public string GetBusinessType(string size)
+        {
+            switch (size)
+            {
+                case ("tiny"):
+                    return GetCommonBusinesstype();
+                case ("small"):
+                    return GetCommonBusinesstype();
+                case ("medium"):
+                    return GetCommonBusinesstype();
+                case ("large"):
+                    return GetCommonBusinesstype();
+                case ("xLarge"):
+                    return GetCommonBusinesstype();
+            };
+            return "invalid entry";
+                
+        }
+        public string GetCommonBusinesstype()
+        {
+            Array typeOfBusiness = Enum.GetValues(typeof(Core.enums.CommonBusinessType));
+            Core.enums.CommonBusinessType getTypeOfBusiness = (Core.enums.CommonBusinessType)typeOfBusiness.GetValue(random.Next(typeOfBusiness.Length));
+            return getTypeOfBusiness.ToString();
+        }
+        public string GetSpecificBusinesstype()
+        {
+            Array typeOfBusiness = Enum.GetValues(typeof(Core.enums.SpecificBusinessType));
+            Core.enums.SpecificBusinessType getTypeOfBusiness = (Core.enums.SpecificBusinessType)typeOfBusiness.GetValue(random.Next(typeOfBusiness.Length));
+            return getTypeOfBusiness.ToString();
         }
     }
 }

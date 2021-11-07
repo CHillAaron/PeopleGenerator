@@ -9,7 +9,7 @@
 
 
 
-    <div>
+@*<div>
         <p> The population size: @this.Model.CityModel.Population.Count</p>
         <ol>
             @foreach(Person p in this.Model.CityModel.Population)
@@ -17,4 +17,13 @@
                     <li><a asp-page="/PersonDetail" asp-route-id="@p.PersonId"> @p.FirstName @p.LastName</a></li>
                 }
         </ol>
-    </div>
+    </div>*@
+<div>
+    <p> The population size: @this.Model.CityModel.Businesses</p>
+    <ol>
+        @foreach (Business b in this.Model.CityModel.Businesses)
+        {
+            <li> @b.BusinessName</li>
+        }
+    </ol>
+</div>
