@@ -23,8 +23,8 @@ namespace PeopleGen.Core
         public List<Person> Population { get; set; } = new List<Person>();
 
         //Businesses
-        //public List<Business> business { get; set; } = new List<Business>();
-        //
+        public List<Business> Businesses { get; set; } = new List<Business>();
+
 
     }
 }

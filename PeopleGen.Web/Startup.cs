@@ -29,8 +29,9 @@ namespace PeopleGen.Web
             services.AddRazorPages();
             services.AddScoped<PeopleService>();
             services.AddScoped<CityServices>();
+            services.AddScoped<BusinessService>();
             services.AddDbContext<PeopleDbContext>(options =>
-                     options.UseNpgsql(Configuration.GetConnectionString("connection")));
+                     options.UseNpgsql(Configuration.GetConnectionString("connection")),ServiceLifetime.Scoped);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

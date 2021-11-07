@@ -1,4 +1,5 @@
-﻿using PeopleGen.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using PeopleGen.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace PeopleGen.Dal
     public class CityServices
     {
         private PeopleDbContext _context { get; }
-        PeopleDbContext serviceDbContext = new PeopleDbContext();
+        //PeopleDbContext serviceDbContext = new PeopleDbContext();
         Random random = new Random();
 
         public CityServices(PeopleDbContext context)
@@ -23,17 +24,21 @@ namespace PeopleGen.Dal
         }
         public Civilization GetCityById(int id)
             {
-                return this._context.Civilization.Where(city => city.CityId == id).FirstOrDefault();
+                return this._context.Civilization.Where(city => city.CityId == id)
+                                                 .Include(city => city.Population)  
+                                                 .Include(city => city.Businesses)
+                                                 .FirstOrDefault();
             }
         public void AddCity(Civilization newCity)
         {
-            serviceDbContext.Civilization.Add(newCity);
-            serviceDbContext.SaveChanges();
+
+            this._context.Civilization.Add(newCity);
+            this._context.SaveChanges();
         }
         //---------- Methods for selecting people -------------------
         public List<Person> GetAllPeople()
         {
-            return this._context.Persons.ToList() ;
+            return this._context.Persons.ToList();
         }
         public Person GetPersonById(int id)
         {
@@ -57,6 +62,9 @@ namespace PeopleGen.Dal
             //get City Name
             string Name = $"{size} {location}";
             //get Ideology
+            //Create Business
+            
+
             Civilization newCity = new Civilization()
             {
                 TypeOfRule = TypeOfRule,
@@ -73,34 +81,41 @@ namespace PeopleGen.Dal
             switch (size)
             {
                 case ("tiny"):
-                    return population = random.Next(43, 52);
+                    return random.Next(43, 52);
                 case ("small"):
-                    return population = random.Next(250, 325);
+                    return random.Next(250, 325);
                 case ("medium"):
-                    return population = random.Next(900, 1052);
+                    return random.Next(900, 1052);
                 case ("large"):
-                    return population = random.Next(4787, 5245);
+                    return random.Next(4787, 5245);
                 case ("xLarge"):
-                    return population = random.Next(19678, 22341);
+                    return random.Next(19678, 22341);
             }
             return population = 0;
         }
         public List<Person> AddPopulation(int populationAmount)
         {
-            int i = 0;
             List<Person> allPeople = GetAllPeople();
-            List<Person> populationOfCity = new List<Person>();
-            while (i < populationAmount)
+            Dictionary<int, Person> peopleLeft = allPeople.ToDictionary(x => x.PersonId);
+            if(populationAmount > allPeople.Count)
+            {
+                populationAmount = allPeople.Count;
+            }
+            Dictionary<int, Person> currentPop = new Dictionary<int, Person>();
+            while (currentPop.Count < populationAmount)
             {
                 //go to database grab a random person
-                int selectedPersonid = random.Next(1, allPeople.Count);
-                Person selectedPerson = GetPersonById(selectedPersonid);
+                int peopleLeftIndex = random.Next(0, peopleLeft.Count);
+                Person selectedPerson = peopleLeft.ElementAt(peopleLeftIndex).Value;
+                //Person selectedPerson = GetPersonById(selectedPersonid);
+                //check the list for the person
                 //add the person to the city list
-                populationOfCity.Add(selectedPerson);
+
+                currentPop.Add(selectedPerson.PersonId, selectedPerson);
+                peopleLeft.Remove(selectedPerson.PersonId);
                 //add a relationship to the person to the city
-                i++;
             }
-            return populationOfCity;
+            return currentPop.Values.ToList();
         }
         public string GetTypeOfRule()
         {

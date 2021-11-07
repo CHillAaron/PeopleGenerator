@@ -8,19 +8,13 @@
 <h1>Currently looking at City: @Model.CityModel.CityName</h1>
 
 
-@if (this.Model.CityModel.Population != null)
-{
+
     <div>
-        <p> The population:</p>
+        <p> The population size: @this.Model.CityModel.Population.Count</p>
         <ol>
-            @foreach (var p in this.Model.CityModel.Population)
-            {
-                <li>@p.FirstName @p.LastName</li>
-            }
+            @foreach(Person p in this.Model.CityModel.Population)
+                {
+                    <li><a asp-page="/PersonDetail" asp-route-id="@p.PersonId"> @p.FirstName @p.LastName</a></li>
+                }
         </ol>
     </div>
-}
-else
-{
-    <p> Town is abondand</p>
-    }

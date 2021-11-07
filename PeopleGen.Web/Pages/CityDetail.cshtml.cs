@@ -13,6 +13,8 @@ namespace PeopleGen.Web.Pages
     {
         public Civilization CityModel { get; set; }
         private CityServices _cityServices;
+        private List<Person>Population = new List<Person>();
+
         public CityDetailModel(CityServices cityservices)
         {
             this._cityServices = cityservices;

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PeopleGen.Dal;
@@ -9,9 +10,10 @@ using PeopleGen.Dal;
 namespace PeopleGen.Dal.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    partial class PeopleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211107170219_init")]
+    partial class init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,11 +110,11 @@ namespace PeopleGen.Dal.Migrations
                     b.Property<bool>("IsMagical")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("MoneyType")
+                    b.Property<string>("Price")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Price")
+                    b.Property<string>("moneyType")
                         .IsRequired()
                         .HasColumnType("text");
 

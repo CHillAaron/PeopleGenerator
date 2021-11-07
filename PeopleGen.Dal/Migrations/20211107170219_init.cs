@@ -72,7 +72,7 @@ namespace PeopleGen.Dal.Migrations
                     Charisma = table.Column<int>(type: "integer", nullable: false),
                     Alignment = table.Column<string>(type: "text", nullable: true),
                     SpeciesId = table.Column<int>(type: "integer", nullable: false),
-                    CityId = table.Column<int>(type: "integer", nullable: false)
+                    CityId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,7 +82,7 @@ namespace PeopleGen.Dal.Migrations
                         column: x => x.CityId,
                         principalTable: "Civilization",
                         principalColumn: "CityId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Persons_Species_SpeciesId",
                         column: x => x.SpeciesId,

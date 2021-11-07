@@ -72,7 +72,7 @@
                             </tr>
                             <tr>
                                 <td>Age: @Model.PeopleModel.Age</td>
-                                <td>Personality: Not Set</td>
+                                <td>City:<a asp-page="/CityDetail" asp-route-id="@Model.cityName.CityId">@Model.cityName.CityName</a></td>
                             </tr>
                         </tbody>
                     </table>

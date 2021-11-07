@@ -18,7 +18,7 @@ namespace PeopleGen.Core
         [Required]
         public string Price { get; set; }
         [Required]
-        public string moneyType { get; set; }
+        public string MoneyType { get; set; }
         public Boolean IsMagical { get; set; }
         public Boolean IsCursed { get; set; }
 

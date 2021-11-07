@@ -10,8 +10,8 @@ using PeopleGen.Dal;
 namespace PeopleGen.Dal.Migrations
 {
     [DbContext(typeof(PeopleDbContext))]
-    [Migration("20211107161615_init")]
-    partial class init
+    [Migration("20211107190955_CorrectTypo")]
+    partial class CorrectTypo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,11 +110,11 @@ namespace PeopleGen.Dal.Migrations
                     b.Property<bool>("IsMagical")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Price")
+                    b.Property<string>("MoneyType")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("moneyType")
+                    b.Property<string>("Price")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -139,7 +139,7 @@ namespace PeopleGen.Dal.Migrations
                     b.Property<int>("Charisma")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CityId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Constitution")
@@ -237,9 +237,7 @@ namespace PeopleGen.Dal.Migrations
                 {
                     b.HasOne("PeopleGen.Core.Civilization", "City")
                         .WithMany("Population")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityId");
 
                     b.HasOne("PeopleGen.Core.Species", "Species")
                         .WithMany("persons")
