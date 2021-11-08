@@ -23,7 +23,7 @@
     <ol>
         @foreach (Business b in this.Model.CityModel.Businesses)
         {
-            <li> @b.BusinessName</li>
+            <li><a asp-page="/BusinessDetail" asp-route-id="@b.BusinessId"> @b.BusinessName</a></li>
         }
     </ol>
 </div>
