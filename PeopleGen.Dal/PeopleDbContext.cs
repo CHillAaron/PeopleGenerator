@@ -30,6 +30,9 @@ namespace PeopleGen.Dal
                 new Species() { SpeciesId = 1, SpeciesName = "Elf"},
                 new Species() { SpeciesId = 2, SpeciesName = "Human"},
                 new Species() { SpeciesId = 3, SpeciesName = "Orc"},
+                new Species() { SpeciesId = 4, SpeciesName = "Dwarf"},
+                new Species() { SpeciesId = 5, SpeciesName = "Goliath"},
+                new Species() { SpeciesId = 6, SpeciesName = "Kenku"},
             });
             //modelBuilder.Entity<Person>().HasData(new List<Person>()
             //{

@@ -83,7 +83,22 @@ namespace PeopleGen.Dal
             AddCity(newCity);
             //Create Business
             List<Business> newBusinesses = new List<Business>();
-            newCity.Businesses.Add(this._businessService.CreateBusiness(allPopulation, size));
+            int i = 0;
+            int AmountToCreate = this._businessService.GetAmountToCreate(newCity.Population.Count);
+            while (i <= AmountToCreate)
+            {
+                if(i != 0)
+                {
+                    newCity.Businesses.Add(this._businessService.CreateBusiness(allPopulation, size));
+                    i++;
+                }
+                else
+                {
+                    newCity.Businesses.Add(this._businessService.CreateBusiness(allPopulation, size, "General"));
+                    i++;
+                }
+                
+            }
             UpdateCity(newCity);
         }
             public int PopulationSize(string size)

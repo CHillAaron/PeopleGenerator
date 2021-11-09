@@ -5,6 +5,7 @@
 @using PeopleGen.Core
 @{
     int i = 0;
+    int k = 0;
 }
 
 
@@ -21,14 +22,14 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th class="text-dark">Cities</th>
+                            <th style="color: rgb(129,0,12); background: rgba(78,78,78,0.3);">Cities</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (Civilization c in this.Model.Cities)
                         {
                             <tr>
-                                <td style="border-style: solid;border-color: #000000;color: rgb(255,255,255);background: #000000;"><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
+                                <td style="border-style: solid; border-color: #000000; color: rgb(129,0,12); background: rgba(78,78,78,0.3); "><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
                             </tr>
 
                         }
@@ -42,12 +43,12 @@
         </div>
         <div class="col-md-8">
             <div>
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs" role="tablist" style="background: rgba(78,78,78,0.3);">
                     <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">City Information</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Civilians</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Business</a></li>
                 </ul>
-                <div class="tab-content">
+                <div class="tab-content" style="background: rgba(78,78,78,0.3);">
                     <div id="tab-1" class="tab-pane active" role="tabpanel">
                         <div class="table-responsive">
                             <table class="table">
@@ -94,13 +95,15 @@
                         </nav>
                     </div>
                     <div id="tab-3" class="tab-pane" role="tabpanel">
-                        <nav>
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-                            </ul>
-                        </nav>
+                        @foreach (Business b in this.Model.CityModel.Businesses)
+                        {
+                            if (k > 30)
+                            {
+                                break;
+                            }
+                            <li><a asp-page="/BusinessDetail" asp-route-id="@b.BusinessId">@b.BusinessName</a></li>
+                            k++;
+                        }
                     </div>
                 </div>
             </div>

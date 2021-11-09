@@ -11,7 +11,7 @@ namespace PeopleGen.Core.enums
         General,
         Weapon,
         Armor,
-        Tavern,
+        //Tavern,
     }
     public enum SpecificBusinessType
     {

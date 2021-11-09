@@ -11,7 +11,6 @@ namespace PeopleGen.Dal
     public class BusinessService
     {
         private PeopleDbContext _context { get; }
-        //PeopleDbContext serviceDbContext = new PeopleDbContext();
         Random random = new Random();
 
         public BusinessService(PeopleDbContext context)
@@ -37,6 +36,23 @@ namespace PeopleGen.Dal
         {
             Person businessOwner = GetBusinessOwner(population);
             string businessType = GetBusinessType(size);
+            int cityId = (int)businessOwner.CityId;
+            //List<Inventory> inventory;
+            Business newBusiness = new Business()
+            {
+                BusinessName = $"{businessOwner.FirstName} {businessType}",
+                BusinessType = businessType,
+                BusinessOwner = businessOwner,
+                CityId = (int)businessOwner.CityId,
+                //Inventory = inventory
+
+            };
+            return newBusiness;
+        }
+        public Business CreateBusiness(List<Person> population, string size, string businessType)
+        {
+            Person businessOwner = GetBusinessOwner(population);
+            //string businessType = businessType;
             int cityId = (int)businessOwner.CityId;
             //List<Inventory> inventory;
             Business newBusiness = new Business()
@@ -86,6 +102,10 @@ namespace PeopleGen.Dal
             Array typeOfBusiness = Enum.GetValues(typeof(Core.enums.SpecificBusinessType));
             Core.enums.SpecificBusinessType getTypeOfBusiness = (Core.enums.SpecificBusinessType)typeOfBusiness.GetValue(random.Next(typeOfBusiness.Length));
             return getTypeOfBusiness.ToString();
+        }
+        public int GetAmountToCreate(int AmountToCreate)
+        {
+            return AmountToCreate / 25;
         }
     }
 }
