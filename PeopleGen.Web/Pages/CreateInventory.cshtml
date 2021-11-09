@@ -1,0 +1,14 @@
+﻿@page
+@model PeopleGen.Web.Pages.CreateInventoryModel
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@using PeopleGen.Core
+@{
+}
+
+<form method="post">
+    <input asp-for="@this.Model.Input.InventoryName.ToUpper()" />
+    <input asp-for="@this.Model.Input.InventoryType.ToUpper()" />
+    <input asp-for="@this.Model.Input.Price" />
+    <input asp-for="@this.Model.Input.MoneyType.ToUpper()" />
+    <button>Submit</button>
+</form>

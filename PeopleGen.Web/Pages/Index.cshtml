@@ -1,10 +1,67 @@
 ﻿@page
 @model IndexModel
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, PeopleGen.Web
+@using PeopleGen.Core
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome To world Generator</h1>
-    <p>Please <a asp-page="/CreateCity">Click Here </a>below to create the first City.</p>
+    @if (this.Model.Cities == null || this.Model.Cities.Count == 0)
+    {
+        <p>Please <a asp-page="/CreateCity">Click Here </a>below to create the first City.</p>
+    }
+    else
+    {
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="text-center" style="color: #c0c260;background: rgba(78,78,78,.3);">Welcome to World Generator</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive" style="border-width: 1px;border-color: rgb(0,0,0);">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="border-style: solid;border-color: #000000;color: rgb(129,0,12);background: rgba(78,78,78,0.3);text-decoration: underline;">City Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (Civilization c in this.Model.Cities)
+                                {
+                                <tr>
+                                    <td class="text-center" style="border-style: solid;border-color: #000000;color: rgb(129,0,12);background: rgba(78,78,78,0.3);"><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
+                                </tr>
+
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form asp-page="/" method="post">
+                        <label for="numToCreate" >Select and Average population</label>
+                        <select name="populationSize">
+                            <option value="tiny" selected="selected">Tiny village (~ 50 people)</option>
+                            <option value="small">small village (~ 300 people)</option>
+                            <option value="medium">medium village (~ 1000 people)</option>
+                            <option value="large"> City (~ 5000 people)</option>
+                            <option value="xLarge">Kingdom (~25000 people)</option>
+                        </select>
+                        <button class="btn btn-danger btn-sm border rounded-pill" type="submit">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    }
 </div>

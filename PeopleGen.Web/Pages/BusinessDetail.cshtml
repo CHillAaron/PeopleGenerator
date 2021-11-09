@@ -8,3 +8,19 @@
 
 <h1>Welcome to the Business Page @Model.BusinessModel.BusinessName</h1>
 
+
+@if (Model.BusinessModel.Inventory != null || Model.BusinessModel.Inventory.Count == 0)
+{
+<ul>
+    @foreach (Inventory i in Model.BusinessModel.Inventory)
+    {
+        if (i.InventoryType.ToUpper() == Model.BusinessModel.BusinessType.ToUpper())
+        {
+            <li>@i.InventoryName</li>
+        }
+    }
+</ul>
+    
+
+}
+

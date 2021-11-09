@@ -119,6 +119,158 @@ namespace PeopleGen.Dal.Migrations
                     b.HasKey("InventoryId");
 
                     b.ToTable("Inventory");
+
+                    b.HasData(
+                        new
+                        {
+                            InventoryId = 1,
+                            InventoryName = "Sickle",
+                            InventoryType = "Weapon",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "50"
+                        },
+                        new
+                        {
+                            InventoryId = 2,
+                            InventoryName = "Shortbow",
+                            InventoryType = "Weapon",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "75"
+                        },
+                        new
+                        {
+                            InventoryId = 3,
+                            InventoryName = "Greatsword",
+                            InventoryType = "Weapon",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "150"
+                        },
+                        new
+                        {
+                            InventoryId = 4,
+                            InventoryName = "Battleaxe",
+                            InventoryType = "Weapon",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "65"
+                        },
+                        new
+                        {
+                            InventoryId = 5,
+                            InventoryName = "Longsword",
+                            InventoryType = "Weapon",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "5"
+                        },
+                        new
+                        {
+                            InventoryId = 6,
+                            InventoryName = "padded",
+                            InventoryType = "Armor",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "150"
+                        },
+                        new
+                        {
+                            InventoryId = 7,
+                            InventoryName = "Studded leather",
+                            InventoryType = "Armor",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "510"
+                        },
+                        new
+                        {
+                            InventoryId = 8,
+                            InventoryName = "Half Plate",
+                            InventoryType = "Armor",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "1550"
+                        },
+                        new
+                        {
+                            InventoryId = 9,
+                            InventoryName = "Plate",
+                            InventoryType = "Armor",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "15510"
+                        },
+                        new
+                        {
+                            InventoryId = 10,
+                            InventoryName = "shield",
+                            InventoryType = "Armor",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "100"
+                        },
+                        new
+                        {
+                            InventoryId = 11,
+                            InventoryName = "Ration",
+                            InventoryType = "General",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "5"
+                        },
+                        new
+                        {
+                            InventoryId = 12,
+                            InventoryName = "Disquise Kit",
+                            InventoryType = "General",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "500"
+                        },
+                        new
+                        {
+                            InventoryId = 13,
+                            InventoryName = "Play card",
+                            InventoryType = "General",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "150"
+                        },
+                        new
+                        {
+                            InventoryId = 14,
+                            InventoryName = "Flute",
+                            InventoryType = "General",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "75"
+                        },
+                        new
+                        {
+                            InventoryId = 15,
+                            InventoryName = "Horse",
+                            InventoryType = "General",
+                            IsCursed = false,
+                            IsMagical = false,
+                            MoneyType = "Copper",
+                            Price = "1500"
+                        });
                 });
 
             modelBuilder.Entity("PeopleGen.Core.Person", b =>

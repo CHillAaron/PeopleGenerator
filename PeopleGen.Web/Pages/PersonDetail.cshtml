@@ -4,45 +4,38 @@
 @using PeopleGen.Core
 @{
 }
-
-    <div class="container d-flex justify-content-center">
-        <nav class="navbar navbar-light navbar-expand-md navigation-clean">
-            <div class="container">
-                <a class="navbar-brand" href="#">World Generator</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navcol-1">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Info</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">New City</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">New Person</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">New Business</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
     <div class="container">
         <div class="row">
             <div class="col-md-4" style="border-width: 2px;border-style: solid;">
-                <h3>Your Town names</h3>
                 <hr style="border-width: 5px;border-style: none;" />
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Column 1</th>
+                                <th>City Names</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @if (this.Model.Cities == null || this.Model.Cities.Count == 0)
+                            {
                             <tr>
-                                <td><a href="CityDetails.html">City 1</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">City 2</a></td>
-                            </tr>
-                            <tr>
-                                <td><a href="#">City 3</a></td>
-                            </tr>
-                        </tbody>
+                                <td>
+                                    Please
+                                    <a asp-page="/CreateCity">Click Here </a> to create the first City.
+                                </td></tr>
+                            }
+                            else
+                            {
+                                @foreach (Civilization c in this.Model.Cities)
+                                {
+<tr>
+                                        <td style="border-style: solid;border-color: #000000;color: rgb(255,255,255);background: #000000;"><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
+                                    </tr>
+
+                                }
+                            }
+
+                            </tbody>
                     </table>
                 </div>
             </div>
@@ -72,7 +65,14 @@
                             </tr>
                             <tr>
                                 <td>Age: @Model.PeopleModel.Age</td>
-                                <td>City:<a asp-page="/CityDetail" asp-route-id="@Model.cityName.CityId">@Model.cityName.CityName</a></td>
+                                @if (@Model.cityName != null)
+                                {
+                                    <td>City:<a asp-page="/CityDetail" asp-route-id="@Model.cityName.CityId">@Model.cityName.CityName</a></td>
+                                }else
+                                {
+                                    <td>Lives in the wilds</td>
+                                }
+
                             </tr>
                         </tbody>
                     </table>

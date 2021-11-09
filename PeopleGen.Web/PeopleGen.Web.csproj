@@ -18,4 +18,8 @@
     <ProjectReference Include="..\PeopleGen.Dal\PeopleGen.Dal.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\TagHelper\" />
+  </ItemGroup>
+
 </Project>

@@ -26,7 +26,7 @@ namespace PeopleGen.Dal
         public Business GetBusinessById(int id)
         {
             return this._context.Business.Where(business => business.BusinessId == id)
-                                                 .FirstOrDefault();
+                                         .FirstOrDefault();
         }
         public void AddBusiness(Business newBusiness)
         {

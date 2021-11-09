@@ -30,6 +30,7 @@ namespace PeopleGen.Web
             services.AddScoped<PeopleService>();
             services.AddScoped<CityServices>();
             services.AddScoped<BusinessService>();
+            services.AddScoped<InventoryService>();
             services.AddDbContext<PeopleDbContext>(options =>
                      options.UseNpgsql(Configuration.GetConnectionString("connection")),ServiceLifetime.Scoped);
         }
@@ -47,7 +48,7 @@ namespace PeopleGen.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -58,6 +59,7 @@ namespace PeopleGen.Web
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

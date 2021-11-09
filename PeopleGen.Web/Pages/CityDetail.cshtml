@@ -1,29 +1,109 @@
 ﻿@page "{id}"
 @model PeopleGen.Web.Pages.CityDetailModel
 @addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, PeopleGen
 @using PeopleGen.Core
 @{
+    int i = 0;
 }
 
-<h1>Currently looking at City: @Model.CityModel.CityName</h1>
 
+@*<h1>The population list</h1>
+<div paging-model="@Model.PagingData" page-class="btn border mt-3"
+     page-class-links="text-center" page-class-normal="btn btn-light" page-class-selected="btn btn-dark  active"
+     page-class-label="p-2 font-weight-bold pt-md-2 text-center" class="text-center">
+</div>*@
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-dark">Cities</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Civilization c in this.Model.Cities)
+                        {
+                            <tr>
+                                <td style="border-style: solid;border-color: #000000;color: rgb(255,255,255);background: #000000;"><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
+                            </tr>
 
-@*<div>
-        <p> The population size: @this.Model.CityModel.Population.Count</p>
-        <ol>
-            @foreach(Person p in this.Model.CityModel.Population)
-                {
-                    <li><a asp-page="/PersonDetail" asp-route-id="@p.PersonId"> @p.FirstName @p.LastName</a></li>
-                }
-        </ol>
-    </div>*@
-<div>
-    <p> The population size: @this.Model.CityModel.Businesses</p>
-    <ol>
-        @foreach (Business b in this.Model.CityModel.Businesses)
-        {
-            <li><a asp-page="/BusinessDetail" asp-route-id="@b.BusinessId"> @b.BusinessName</a></li>
-        }
-    </ol>
+                        }
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">City Information</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Civilians</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Business</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th><img />CityName: @Model.CityModel.CityName</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Location: @Model.CityModel.Location</td>
+                                        <td>Rule Type: @Model.CityModel.TypeOfRule</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Population: @Model.CityModel.Population.Count</td>
+                                        <td>Ideology</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tab-pane" role="tabpanel">
+                        <nav>
+                            <ul>
+                                
+                                @foreach (Person p in this.Model.CityModel.Population)
+                                {
+                                    if (i > 30)
+                                    {
+                                        break;
+                                    }
+                                    <li><a asp-page="/PersonDetail" asp-route-id="@p.PersonId">@p.FirstName @p.LastName</a></li>
+                                    i++;
+                                }
+
+                                @*<div paging-model="@Model.PagingData" page-class="btn border mt-3"
+             page-class-links="text-center" page-class-normal="btn btn-light" page-class-selected="btn btn-dark  active"
+             page-class-label="p-2 font-weight-bold  pt-md-2  text-center" class="text-center">
+        </div>*@
+                                @*<li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>*@
+                            </ul>
+                        </nav>
+                    </div>
+                    <div id="tab-3" class="tab-pane" role="tabpanel">
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

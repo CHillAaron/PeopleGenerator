@@ -32,7 +32,7 @@ namespace PeopleGen.Dal.Migrations
                     InventoryName = table.Column<string>(type: "text", nullable: false),
                     InventoryType = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<string>(type: "text", nullable: false),
-                    moneyType = table.Column<string>(type: "text", nullable: false),
+                    MoneyType = table.Column<string>(type: "text", nullable: false),
                     IsMagical = table.Column<bool>(type: "boolean", nullable: false),
                     IsCursed = table.Column<bool>(type: "boolean", nullable: false)
                 },
@@ -129,12 +129,34 @@ namespace PeopleGen.Dal.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Inventory",
+                columns: new[] { "InventoryId", "InventoryName", "InventoryType", "IsCursed", "IsMagical", "MoneyType", "Price" },
+                values: new object[,]
+                {
+                    { 1, "Sickle", "Weapon", false, false, "Copper", "50" },
+                    { 15, "Horse", "General", false, false, "Copper", "1500" },
+                    { 14, "Flute", "General", false, false, "Copper", "75" },
+                    { 13, "Play card", "General", false, false, "Copper", "150" },
+                    { 12, "Disquise Kit", "General", false, false, "Copper", "500" },
+                    { 11, "Ration", "General", false, false, "Copper", "5" },
+                    { 10, "shield", "Armor", false, false, "Copper", "100" },
+                    { 9, "Plate", "Armor", false, false, "Copper", "15510" },
+                    { 7, "Studded leather", "Armor", false, false, "Copper", "510" },
+                    { 6, "padded", "Armor", false, false, "Copper", "150" },
+                    { 5, "Longsword", "Weapon", false, false, "Copper", "5" },
+                    { 4, "Battleaxe", "Weapon", false, false, "Copper", "65" },
+                    { 3, "Greatsword", "Weapon", false, false, "Copper", "150" },
+                    { 2, "Shortbow", "Weapon", false, false, "Copper", "75" },
+                    { 8, "Half Plate", "Armor", false, false, "Copper", "1550" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Species",
                 columns: new[] { "SpeciesId", "SpeciesName" },
                 values: new object[,]
                 {
-                    { 1, "Elf" },
                     { 2, "Human" },
+                    { 1, "Elf" },
                     { 3, "Orc" }
                 });
 

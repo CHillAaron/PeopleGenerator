@@ -13,13 +13,16 @@ namespace PeopleGen.Web.Pages
     {
         public Business BusinessModel { get; set; }
         private BusinessService _businessService;
-        public BusinessDetailModel(BusinessService businessService)
+        private InventoryService _inventoryService;
+        public BusinessDetailModel(BusinessService businessService, InventoryService inventoryService)
         {
             this._businessService = businessService;
+            this._inventoryService = inventoryService;
         }
         public void OnGet(int id)
         {
             this.BusinessModel = this._businessService.GetBusinessById(id);
+            this.BusinessModel.Inventory = _inventoryService.GetAllItems();
         }
     }
 }

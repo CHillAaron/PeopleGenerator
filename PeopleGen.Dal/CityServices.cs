@@ -37,6 +37,12 @@ namespace PeopleGen.Dal
             this._context.Civilization.Add(newCity);
             this._context.SaveChanges();
         }
+        public void UpdateCity(Civilization newCity)
+        {
+
+            this._context.Civilization.Update(newCity);
+            this._context.SaveChanges();
+        }
         //---------- Methods for selecting people -------------------
         public List<Person> GetAllPeople()
         {
@@ -64,9 +70,7 @@ namespace PeopleGen.Dal
             //get City Name
             string Name = $"{size} {location}";
             //get Ideology
-            //Create Business
-            List<Business> newBusinesses = new List<Business>();
-            newBusinesses.Add( this._businessService.CreateBusiness(allPopulation, size));
+
 
             Civilization newCity = new Civilization()
             {
@@ -74,11 +78,15 @@ namespace PeopleGen.Dal
                 Location = location,
                 Population = allPopulation,
                 CityName = location + " " + population,
-                Businesses = newBusinesses
+
             };
             AddCity(newCity);
+            //Create Business
+            List<Business> newBusinesses = new List<Business>();
+            newCity.Businesses.Add(this._businessService.CreateBusiness(allPopulation, size));
+            UpdateCity(newCity);
         }
-        public int PopulationSize(string size)
+            public int PopulationSize(string size)
         {
 
             switch (size)

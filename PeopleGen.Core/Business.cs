@@ -24,8 +24,7 @@ namespace PeopleGen.Core
         public int CityId { get; set; }
         public Civilization Civilization { get; set; }
         [NotMapped]
-        public List<Inventory> Inventory { get; set; } = new List<Inventory>();
-
-
+        public List<Inventory> Inventory { get; set; } = new List<Inventory>();        
+     
     }
 }

@@ -9,7 +9,7 @@ namespace PeopleGen.Core.enums
     public enum CommonBusinessType
     {
         General,
-        Weapons,
+        Weapon,
         Armor,
         Tavern,
     }

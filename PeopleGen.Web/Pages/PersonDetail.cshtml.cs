@@ -16,7 +16,8 @@ namespace PeopleGen.Web.Pages
         private CityServices _cityServices;
         public Species SpeciesInfo { get; private set; }
         public Civilization cityName { get; private set; }
-        
+        public List<Civilization> Cities = new List<Civilization>();
+
         public PersonDetailModel(PeopleService peopleService, CityServices cityServices)
         {
             this._peopleService = peopleService;
@@ -27,7 +28,8 @@ namespace PeopleGen.Web.Pages
         {
             this.PeopleModel = this._peopleService.GetPersonById(id);
             this.SpeciesInfo = this._peopleService.GetSpeciesById(PeopleModel.SpeciesId);
-            if(this.PeopleModel.CityId != null)
+            this.Cities = this._cityServices.GetAllCities();
+            if (this.PeopleModel.CityId != null)
             {
                 this.cityName = this._cityServices.GetCityById((int)this.PeopleModel.CityId);
             }
