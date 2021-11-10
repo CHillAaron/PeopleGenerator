@@ -19,17 +19,17 @@
     <div class="row">
         <div class="col-md-4">
             <div class="table-responsive">
-                <table class="table">
+                <table class="table" style="background: rgba(78,78,78,0.2);">
                     <thead>
                         <tr>
-                            <th style="color: rgb(129,0,12); background: rgba(78,78,78,0.3);">Cities</th>
+                            <th style="color: rgb(129,0,12) ;">Cities</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (Civilization c in this.Model.Cities)
                         {
                             <tr>
-                                <td style="border-style: solid; border-color: #000000; color: rgb(129,0,12); background: rgba(78,78,78,0.3); "><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
+                                <td style=" color: rgb(129,0,12);"><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
                             </tr>
 
                         }
@@ -43,12 +43,12 @@
         </div>
         <div class="col-md-8">
             <div>
-                <ul class="nav nav-tabs" role="tablist" style="background: rgba(78,78,78,0.3);">
+                <ul class="nav nav-tabs" role="tablist" style="background: rgba(78,78,78,0.2);">
                     <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" href="#tab-1">City Information</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-2">Civilians</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" href="#tab-3">Business</a></li>
                 </ul>
-                <div class="tab-content" style="background: rgba(78,78,78,0.3);">
+                <div class="tab-content" style="background: rgba(78,78,78,0.2);">
                     <div id="tab-1" class="tab-pane active" role="tabpanel">
                         <div class="table-responsive">
                             <table class="table">

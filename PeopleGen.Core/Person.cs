@@ -30,8 +30,11 @@ namespace PeopleGen.Core
         //[Required]
         public int Charisma { get; set; }
         //Chariteristics
-        //[Required]
+        //Personality
+        [Required]
         public string Alignment { get; set; }
+        //[Required]
+        public string PersonalityStrength { get; set; }
         [Required]
         public int SpeciesId { get; set; }
         public Species Species { get; set; }

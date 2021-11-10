@@ -6,21 +6,38 @@
 }
 
 
-<h1>Welcome to: @Model.BusinessModel.BusinessName</h1>
+<h1>Welcome to: @Model.BusinessModel.BusinessName Store</h1>
 
 
 @if (Model.BusinessModel.Inventory != null || Model.BusinessModel.Inventory.Count == 0)
 {
-<ul>
-    @foreach (Inventory i in Model.BusinessModel.Inventory)
-    {
-        if (i.InventoryType.ToUpper() == Model.BusinessModel.BusinessType.ToUpper())
-        {
-            <li>@i.InventoryName</li>
-        }
-    }
-</ul>
-    
+
+    <div class="table-responsive">
+        <table class="table" style="background: rgba(78,78,78,0.2);">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Inventory i in Model.BusinessModel.Inventory)
+                {
+                    if (i.InventoryType.ToUpper() == Model.BusinessModel.BusinessType.ToUpper())
+                    {
+                        <tr>
+
+                            <td>@i.InventoryName</td>
+                            <td>@i.Price @i.MoneyType</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+
 
 }
 

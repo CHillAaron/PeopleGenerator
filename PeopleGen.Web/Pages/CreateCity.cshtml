@@ -17,20 +17,3 @@
     </select>
     <button>Submit</button>
 </form>
-@if (this.Model != null)
-{
-    <h1> City</h1>
-    <p> People Count: @this.Model remaining</p>
-    <div>
-        <ol>
-            @foreach (Person c in this.Model.listOfPeople)
-            {
-                if (c.PersonId > 100)
-                {
-                    break;
-                }
-                <li><a asp-page="/PersonDetail" asp-route-id="@c.PersonId">@c.FirstName @c.LastName</a></li>
-            }
-        </ol>
-    </div>
-}

@@ -31,7 +31,7 @@ namespace PeopleGen.Web.Pages
         {
             
             this._cityService.CreateCity(populationSize);
-            return RedirectToPage("/CreateCity");
+            return RedirectToPage("/Index");
 
             //Console.WriteLine("**********************************");
             //foreach(var p in listOfPeople)

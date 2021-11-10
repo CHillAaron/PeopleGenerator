@@ -9,37 +9,38 @@
             <div class="col-md-4" style="border-width: 2px;border-style: solid;">
                 <hr style="border-width: 5px;border-style: none;" />
                 <div class="table-responsive">
-                    <table class="table" style="background: rgba(78,78,78,0.3);">
+                    <table class="table" style="background: rgba(78,78,78,0.2);">
                         <thead>
-                            <tr >
+                            <tr>
                                 <th>City Names</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (this.Model.Cities == null || this.Model.Cities.Count == 0)
                             {
-                            <tr>
-                                <td>
-                                    Please
-                                    <a asp-page="/CreateCity">Click Here </a> to create the first City.
-                                </td></tr>
+                                <tr>
+                                    <td>
+                                        Please
+                                        <a asp-page="/CreateCity">Click Here </a> to create the first City.
+                                    </td>
+                                </tr>
                             }
                             else
                             {
                                 @foreach (Civilization c in this.Model.Cities)
                                 {
-<tr>
-                                        <td style="border-style: solid;border-color: #000000;color: rgb(255,255,255);background: #000000;"><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
+                                    <tr>
+                                        <td><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
                                     </tr>
 
                                 }
                             }
 
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
-            <div class="col" style="background: rgba(78,78,78,0.3);">
+            <div class="col" style="background: rgba(78,78,78,0.2);">
                 <h1 class="d-flex d-md-flex justify-content-md-center">@Model.PeopleModel.FirstName @Model.PeopleModel.LastName </h1>
                 <p class="text-center">Alignment: @Model.PeopleModel.Alignment</p>
                 <hr />
@@ -109,7 +110,7 @@
                                 <td>Weakness: Not Set</td>
                             </tr>
                             <tr>
-                                <td>Strengths: Not Set</td>
+                                <td>Strengths: @Model.PeopleModel.PersonalityStrength</td>
                                 <td>Flaw/secret: Not Set</td>
                             </tr>
                         </tbody>

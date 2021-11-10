@@ -8,8 +8,13 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-a {
+a, td, li, p {
     color: white;
+}
+
+th, h1 {
+    color: rgb(129,0,12);
+    text-decoration: underline;
 }
 
 .btn-primary {

@@ -71,6 +71,8 @@ namespace PeopleGen.Dal
             string alignment = GetAlignment();
             //Get Personality
             string personality = GetPersonality();
+            //Gets the strengths
+            //string personalityStrength = GetPersonalityStrength();
             Person newPerson = new Person()
             {
                 FirstName = firstName,
@@ -84,6 +86,7 @@ namespace PeopleGen.Dal
                 Wisdom = Wisdom,
                 Charisma = Charisma,
                 Alignment = alignment,
+                //PersonalityStrength = personalityStrength,
                 SpeciesId = selectedSpecies.SpeciesId,
             };
             return newPerson;
@@ -156,6 +159,13 @@ namespace PeopleGen.Dal
             return getMood.ToString();
 
         }
+        //public string GetPersonalityStrength()
+        //{
+        //    Array strength = Enum.GetValues(typeof(Core.enums.Strength));
+        //    Core.enums.Strength getMood = (Core.enums.Strength)strength.GetValue(random.Next(strength.Length));
+        //    return getMood.ToString();
+
+        //}
         public Species GetSpeciesById(int id)
         {
             return this._context.Species.Where(species => species.SpeciesId == id).FirstOrDefault();
