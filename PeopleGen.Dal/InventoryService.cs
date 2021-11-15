@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PeopleGen.Dal
 {
-    public class InventoryService
+    public class InventoryService 
     {
         private PeopleDbContext _context { get; }
         public InventoryService(PeopleDbContext context)

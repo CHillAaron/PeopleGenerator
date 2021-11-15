@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,12 +28,21 @@ namespace PeopleGen.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddControllers();
+            services.AddSwaggerGen();
+            services.AddControllersWithViews();
             services.AddScoped<PeopleService>();
             services.AddScoped<CityServices>();
             services.AddScoped<BusinessService>();
             services.AddScoped<InventoryService>();
+            services.AddScoped<SpeciesAPIService>();
             services.AddDbContext<PeopleDbContext>(options =>
                      options.UseNpgsql(Configuration.GetConnectionString("connection")),ServiceLifetime.Scoped);
+            services.AddHttpClient<SpeciesAPIService, SpeciesAPIService>(c =>
+            {
+                c.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +51,8 @@ namespace PeopleGen.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {

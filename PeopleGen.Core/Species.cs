@@ -9,10 +9,10 @@ namespace PeopleGen.Core
 {
     public class Species
     {
-        [Key]
+        
         public int SpeciesId { get; set; }
-        [Required]
+        
         public string SpeciesName { get; set; }
-        public List<Person> persons { get; set; } = new List<Person>();
+        
     }
 }

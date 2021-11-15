@@ -25,15 +25,15 @@ namespace PeopleGen.Dal
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Species>().HasData(new List<Species>()
-            {
-                new Species() { SpeciesId = 1, SpeciesName = "Elf"},
-                new Species() { SpeciesId = 2, SpeciesName = "Human"},
-                new Species() { SpeciesId = 3, SpeciesName = "Orc"},
-                new Species() { SpeciesId = 4, SpeciesName = "Dwarf"},
-                new Species() { SpeciesId = 5, SpeciesName = "Goliath"},
-                new Species() { SpeciesId = 6, SpeciesName = "Kenku"},
-            });
+            //modelBuilder.Entity<Species>().HasData(new List<Species>()
+            //{
+            //    new Species() { SpeciesId = 1, SpeciesName = "Elf"},
+            //    new Species() { SpeciesId = 2, SpeciesName = "Human"},
+            //    new Species() { SpeciesId = 3, SpeciesName = "Orc"},
+            //    new Species() { SpeciesId = 4, SpeciesName = "Dwarf"},
+            //    new Species() { SpeciesId = 5, SpeciesName = "Goliath"},
+            //    new Species() { SpeciesId = 6, SpeciesName = "Kenku"},
+            //});
             //modelBuilder.Entity<Person>().HasData(new List<Person>()
             //{
             //    new Person() { PersonId = 1, FirstName = "Talice", LastName = "Nenna", Age = 46, SpeciesId=1, Gender="Female",Strength = 10,Dexterity = 14, Constitution = 10, Intelligence = 15, Wisdom = 18, Charisma = 18, Alignment = PeopleGen.Core.enums.Moral.Neutral +" "+  PeopleGen.Core.enums.Alignment.Neutral},
