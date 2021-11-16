@@ -12,12 +12,23 @@ namespace PeopleGen.Web.Pages
     public class AllSpeciesModel : PageModel
     {
         public APISpecies apiSpeciesModel { get; set; }
-        private SpeciesAPIService _speciesAPI;
-        public string SpeciesAPI { get; private set; }
+        private SpeciesAPIService _speciesService;
+        List<APISpecies> listOfApiSpecies = new List<APISpecies>();
 
-        public void OnGet()
+        public AllSpeciesModel(SpeciesAPIService speciesService)
         {
-            
+            _speciesService = speciesService;
+        }
+        //public void OnGet()
+        //{
+
+        //        //apiSpeciesModel = _speciesService.GetApiSpecies("dragonborn");
+        //}
+        public async Task<IActionResult> OnGet(string race)
+        {
+            List<APISpecies> listOfApiSpecies = new List<APISpecies>();
+            listOfApiSpecies = await _speciesService.GetApiSpecies(race);
+            return RedirectToPage("AllSpecies");
         }
     }
 }

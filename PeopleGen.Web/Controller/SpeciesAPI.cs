@@ -22,21 +22,20 @@ namespace PeopleGen.Web.Controller
             _logger = logger;
             _speciesService = speciesService;
         }
-        [HttpGet]
-        public async Task<IActionResult> Index(string race)
-        {
-            List<APISpecies> creatures = new List<APISpecies>();
-            creatures = await _speciesService.get(race);
-            return View(creatures);
-        }
-        //public IEnumerable<APISpecies> Get()
+        //[HttpGet]
+        //public async Task<IActionResult> Index(string race)
         //{
-        //    return _speciesService.get();
+        //    List<APISpecies> creatures = new List<APISpecies>();
+        //    creatures = await _speciesService.get(race);
+        //    return View(creatures);
         //}
-        //[HttpGet("{name}", Name = "Get")]
-        //public Creature Get(int id)
+        //[HttpGet]
+        //public async Task<string> GetSpecies(string race)
         //{
-        //    return _carService.Read(id);
+        //    List<APISpecies> creatures = new List<APISpecies>();
+        //    creatures = await _speciesService.get(race);
+        //    return View(creatures);
         //}
+
     }
 }
