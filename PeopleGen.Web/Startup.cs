@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using PeopleGen.Dal;
 using Microsoft.EntityFrameworkCore;
+using PeopleGen.Dal.Interfaces;
 
 namespace PeopleGen.Web
 {
@@ -35,13 +36,16 @@ namespace PeopleGen.Web
             services.AddScoped<CityServices>();
             services.AddScoped<BusinessService>();
             services.AddScoped<InventoryService>();
-            services.AddScoped<SpeciesAPIService>();
             services.AddDbContext<PeopleDbContext>(options =>
                      options.UseNpgsql(Configuration.GetConnectionString("connection")),ServiceLifetime.Scoped);
-            services.AddHttpClient<SpeciesAPIService, SpeciesAPIService>(c =>
-            {
-                c.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
-            });
+            //services.AddHttpClient<SpeciesAPIService, SpeciesAPIService>(c =>
+            //{
+            //    c.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
+            //});
+            //services.AddScoped<SpeciesAPIService>();
+            services.AddSingleton<ISpeciesAPI, SpeciesAPIService>();
+            services.AddHttpClient("SpeciesAPICall", c => c.BaseAddress = new Uri("https://www.dnd5eapi.co/api/"));
+
 
         }
 

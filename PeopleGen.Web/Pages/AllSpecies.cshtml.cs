@@ -17,7 +17,7 @@ namespace PeopleGen.Web.Pages
 
         public void OnGet()
         {
-            this.SpeciesAPI = _speciesAPI.get("dragonborn");
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PeopleGen.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace PeopleGen.Dal.Interfaces
 {
     public interface ISpeciesAPI
     {
-        Task<string> get(string race);
+        Task<List<APISpecies>> get(string race);
     }
 }

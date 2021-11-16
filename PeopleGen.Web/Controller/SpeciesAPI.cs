@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PeopleGen.Core;
 using PeopleGen.Dal;
 using System;
 using System.Collections.Generic;
@@ -22,9 +23,20 @@ namespace PeopleGen.Web.Controller
             _speciesService = speciesService;
         }
         [HttpGet]
-        public async Task<string> Get(string race)
+        public async Task<IActionResult> Index(string race)
         {
-            return await _speciesService.get(race);
+            List<APISpecies> creatures = new List<APISpecies>();
+            creatures = await _speciesService.get(race);
+            return View(creatures);
         }
+        //public IEnumerable<APISpecies> Get()
+        //{
+        //    return _speciesService.get();
+        //}
+        //[HttpGet("{name}", Name = "Get")]
+        //public Creature Get(int id)
+        //{
+        //    return _carService.Read(id);
+        //}
     }
 }

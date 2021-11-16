@@ -10,5 +10,6 @@ namespace PeopleGen.Core
     {
         public string Name { get; set; }
         public string Index { get; set; }
+        public int Speed { get; set; }
     }
 }
