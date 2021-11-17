@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PeopleGen.Web.Controller
 {
-    [Route("api/species/[controller]")]
+    [Route("api/species")]
     [ApiController]
     public class SpeciesAPI : ControllerBase
     {
@@ -22,13 +22,13 @@ namespace PeopleGen.Web.Controller
             _logger = logger;
             _speciesService = speciesService;
         }
-        //[HttpGet]
-        //public async Task<IActionResult> Index(string race)
-        //{
-        //    List<APISpecies> creatures = new List<APISpecies>();
-        //    creatures = await _speciesService.get(race);
-        //    return View(creatures);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Index(string race)
+        {
+            List<APISpecies> creatures = new List<APISpecies>();
+            //creatures = await _speciesService.GetApiSpecies(race);
+            return Ok("Does this work?");
+        }
         //[HttpGet]
         //public async Task<string> GetSpecies(string race)
         //{

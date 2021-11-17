@@ -19,16 +19,16 @@ namespace PeopleGen.Web.Pages
         {
             _speciesService = speciesService;
         }
-        //public void OnGet()
-        //{
-
-        //        //apiSpeciesModel = _speciesService.GetApiSpecies("dragonborn");
-        //}
-        public async Task<IActionResult> OnGet(string race)
+        public void OnGet()
         {
-            List<APISpecies> listOfApiSpecies = new List<APISpecies>();
-            listOfApiSpecies = await _speciesService.GetApiSpecies(race);
-            return RedirectToPage("AllSpecies");
+
+            //apiSpeciesModel = _speciesService.GetApiSpecies("dragonborn");
         }
+        //public async Task<IActionResult> OnGet(string race)
+        //{
+        //    List<APISpecies> listOfApiSpecies = new List<APISpecies>();
+        //    listOfApiSpecies = await _speciesService.GetApiSpecies(race);
+        //    return RedirectToPage("AllSpecies");
+        //}
     }
 }

@@ -1,5 +1,4 @@
-﻿using PeopleGen.Dal.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -7,71 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using PeopleGen.Core;
 using System.Text.Json;
+using PeopleGen.Dal.Interfaces;
 
 namespace PeopleGen.Dal
 {
-
     public class SpeciesAPIService : ISpeciesAPI
     {
-        private static readonly HttpClient client;
-        //public SpeciesAPIService(HttpClient httpClient, IHttpClientFactory clientFactory)
-        //{
-        //    _httpClient = httpClient;
-        //    _httpClient = clientFactory.CreateClient("SpeciesAPICall");
-        //}
-
-        static SpeciesAPIService()
+        private HttpClient _httpClient;
+        public SpeciesAPIService(HttpClient httpClient)
         {
-            client = new HttpClient()
-            {
-                BaseAddress = new Uri("https://www.dnd5eapi.co/api/")
-            };
-        }
-        public async Task<List<APISpecies>> GetApiSpecies(string race)
-        {
-            var url = string.Format($"{race}");
-            var result = new List<APISpecies>();
-            var response = await client.GetAsync(url);
-            if (response.IsSuccessStatusCode)
-            {
-                var stringResponse = await response.Content.ReadAsStringAsync();
-
-                result = JsonSerializer.Deserialize<List<APISpecies>>(stringResponse,
-                    new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-            }
-            else
-            {
-                throw new HttpRequestException(response.ReasonPhrase);
-            }
-
-            return result;
+            _httpClient = httpClient;
         }
 
-
-        //public async Task<string> getSpecies(string race)
-        //{
-        //    string APIURL = $"races/{race}";
-        //    var res = await _httpClient.GetAsync(APIURL);
-        //    return await res.Content.ReadAsStringAsync();
-        //}
-        //public async Task<List<APISpecies>> get(string race)
-        //{
-        //    string APIURL = $"races/{race}";
-        //    var result = new List<APISpecies>();
-        //    var response = await _httpClient.GetAsync(APIURL);
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var stringResponse = await response.Content.ReadAsStringAsync();
-
-        //        result = JsonSerializer.Deserialize<List<APISpecies>>(stringResponse,
-        //            new JsonSerializerOptions() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-        //    }
-        //    else
-        //    {
-        //        throw new HttpRequestException(response.ReasonPhrase);
-        //    }
-
-        //    return result;
-        //}
+        public async Task<string> get(string race)
+        {
+            string APIURL = $"https://www.dnd5eapi.co/api/races/{race}";
+            var res = await _httpClient.GetAsync(APIURL);
+            return await res.Content.ReadAsStringAsync();
+        }
     }
 }
