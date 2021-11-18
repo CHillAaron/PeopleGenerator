@@ -9,10 +9,10 @@ namespace PeopleGen.Core
 {
     public class Species
     {
-        
-        public int SpeciesId { get; set; }
-        
+                
         public string SpeciesName { get; set; }
-        
+        public int Speed { get; set; }
+        //public List<Ability> Ability_Bonuses { get; set; }
+
     }
 }

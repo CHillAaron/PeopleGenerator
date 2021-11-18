@@ -1,0 +1,122 @@
+﻿@page "{race}"
+@model PeopleGen.Web.Pages.SpeciesDetailsModel
+@{
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" style="border-width: 2px;border-style: solid;">
+            <hr style="border-width: 5px;border-style: none;" />
+            <div class="table-responsive">
+                <table class="table" style="background: rgba(78,78,78,0.2);">
+                    <thead>
+                        <tr>
+                            <th>City Names</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (this.Model.Cities == null || this.Model.Cities.Count == 0)
+                        {
+                            <tr>
+                                <td>
+                                    Please
+                                    <a asp-page="/CreateCity">Click Here </a> to create the first City.
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (Civilization c in this.Model.Cities)
+                            {
+                                <tr>
+                                    <td><a asp-page="/CityDetail" asp-route-id="@c.CityId"> @c.CityName</a></td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col" style="background: rgba(78,78,78,0.2);">
+            <h1 class="d-flex d-md-flex justify-content-md-center">You are currently looking at the @Model.SpecificSpeciesModel.Name </h1>
+            <p class="text-center">@Model.SpecificSpeciesModel.s</p>
+            <hr />
+            <ul class="list-unstyled d-flex justify-content-between">
+                <li>STR: @Model.PeopleModel.Strength</li>
+                <li>Dex: @Model.PeopleModel.Dexterity</li>
+                <li>Con: @Model.PeopleModel.Constitution</li>
+                <li>Int: @Model.PeopleModel.Intelligence</li>
+                <li>Wis: @Model.PeopleModel.Wisdom</li>
+                <li>Char: @Model.PeopleModel.Charisma</li>
+            </ul>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Status: </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nobility: Not Set</td>
+                            <td>Race: <a asp-page="/SpeciesDetails" asp-route-race="@Model.PeopleModel.SpeciesName.ToLower()">@Model.PeopleModel.SpeciesName</a></td>
+                        </tr>
+                        <tr>
+                            <td>Age: @Model.PeopleModel.Age</td>
+                            @if (@Model.cityName != null)
+                            {
+                                <td>City:<a asp-page="/CityDetail" asp-route-id="@Model.cityName.CityId">@Model.cityName.CityName</a></td>
+                            }
+                            else
+                            {
+                                <td>Lives in the wilds</td>
+                            }
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Family</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Spouse: Not Set</td>
+                            <td>Kids: Not Set</td>
+                        </tr>
+                        <tr>
+                            <td>Siblings: Not Set</td>
+                            @*<td>Cell 4</td>*@
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Personal:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Fears: Not Set</td>
+                            <td>Weakness: Not Set</td>
+                        </tr>
+                        <tr>
+                            <td>Strengths: @Model.PeopleModel.PersonalityStrength</td>
+                            <td>Flaw/secret: Not Set</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

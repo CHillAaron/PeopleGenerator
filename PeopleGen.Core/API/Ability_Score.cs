@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PeopleGen.Core
+namespace PeopleGen.Core.API
 {
-    public class APISpecies
+    public class Ability_Score
     {
         public string Name { get; set; }
         public string Index { get; set; }
-        public int Speed { get; set; }
+        public string Url { get; set; }
     }
 }

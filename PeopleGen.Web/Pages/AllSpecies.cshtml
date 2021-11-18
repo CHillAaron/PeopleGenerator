@@ -4,4 +4,11 @@
 @{
 }
 
-<h1>Welcome, You are a </h1>
+@*<h1>Welcome, You are a @Model.apiSpeciesModel.Name</h1>*@
+
+<ul>
+    @foreach (var s in Model.listOfApiSpecies)
+    {
+        <li>@s.Name</li>
+    }
+</ul>

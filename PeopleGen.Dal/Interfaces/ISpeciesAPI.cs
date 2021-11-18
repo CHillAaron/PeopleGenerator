@@ -10,6 +10,6 @@ namespace PeopleGen.Dal.Interfaces
     public interface ISpeciesAPI
     {
         //Task<List<string>> GetApiSpecies(string race);
-        Task<string> get(string race);
+        SpecificSpecies GetSpecies(string race);
     }
 }

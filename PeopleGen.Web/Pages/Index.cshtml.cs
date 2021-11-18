@@ -38,26 +38,26 @@ namespace PeopleGen.Web.Pages
         {
             Cities = this._cityServices.GetAllCities();
             listOfPeople = this._cityServices.GetAllPeople();
-            StringBuilder QParam = new StringBuilder();
-            if (PageNum != 0)
-            {
-                QParam.Append($"/Index?PageNum=-");
+            //StringBuilder QParam = new StringBuilder();
+            //if (PageNum != 0)
+            //{
+            //    QParam.Append($"/Index?PageNum=-");
 
-            }
-            if (listOfPeople.Count > 0)
-            {
-                PagingData = new PagingData
-                {
-                    CurrentPage = PageNum,
-                    RecordsPerPage = PageSize,
-                    TotalRecords = listOfPeople.Count,
-                    UrlParams = QParam.ToString(),
-                    LinksPerPage = 7
-                };
-                listOfPeople = listOfPeople.Skip((PageNum - 1) * PageSize)
-               .Take(PageSize).ToList();
-
-            }
+            //}
+            //if (listOfPeople.Count > 0)
+            //{
+            //    PagingData = new PagingData
+            //    {
+            //        CurrentPage = PageNum,
+            //        RecordsPerPage = PageSize,
+            //        TotalRecords = listOfPeople.Count,
+            //        UrlParams = QParam.ToString(),
+            //        LinksPerPage = 7
+            //    };
+            //    listOfPeople = listOfPeople.Skip((PageNum - 1) * PageSize)
+            //   .Take(PageSize).ToList();
+        //}
+        
         }
         public IActionResult OnPost(string populationSize)
         {
@@ -65,7 +65,7 @@ namespace PeopleGen.Web.Pages
             this._cityServices.CreateCity(populationSize);
             return RedirectToPage("/index");
 
-            
+
         }
     }
 }

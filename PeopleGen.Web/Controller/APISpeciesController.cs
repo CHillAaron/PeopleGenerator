@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PeopleGen.Core;
 using PeopleGen.Dal;
 using System;
 using System.Collections.Generic;
@@ -9,25 +10,30 @@ using System.Threading.Tasks;
 
 namespace PeopleGen.Web.Controller
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class APISpeciesController : ControllerBase
     {
         private readonly ILogger<APISpeciesController> _logger;
-        private readonly SpeciesAPIService _speciesService;
+        private readonly APIService _apiService;
 
-        public APISpeciesController(ILogger<APISpeciesController> logger, SpeciesAPIService speciesService)
+        public APISpeciesController(ILogger<APISpeciesController> logger, APIService apiService)
         {
             _logger = logger;
-            _speciesService = speciesService;
+            _apiService = apiService;
         }
+        //Pulls just one species
+        //[HttpGet]
+        //public async Task<APISpecies> Get()
+        //{
+        //    return await _speciesService.GetALLSpecies();
+        //}
+
+        //pulls multiple species
         [HttpGet]
-        public async Task<string> Get(string race)
+        public List<SpecificSpecies> Get()
         {
-
-            return await _speciesService.get(race);
-
-
+            return _apiService.GetALLSpecies();
         }
     }
 }

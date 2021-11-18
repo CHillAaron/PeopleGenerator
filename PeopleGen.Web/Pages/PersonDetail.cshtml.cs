@@ -27,7 +27,7 @@ namespace PeopleGen.Web.Pages
         public void OnGet(int id)
         {
             this.PeopleModel = this._peopleService.GetPersonById(id);
-            this.SpeciesInfo = this._peopleService.GetSpeciesById(PeopleModel.SpeciesId);
+            //this.SpeciesInfo = this._peopleService.GetSpeciesById(PeopleModel.SpeciesId);
             this.Cities = this._cityServices.GetAllCities();
             if (this.PeopleModel.CityId != null)
             {

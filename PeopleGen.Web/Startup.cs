@@ -38,11 +38,11 @@ namespace PeopleGen.Web
             services.AddScoped<InventoryService>();
             services.AddDbContext<PeopleDbContext>(options =>
                      options.UseNpgsql(Configuration.GetConnectionString("connection")),ServiceLifetime.Scoped);
-            services.AddHttpClient<ISpeciesAPI, SpeciesAPIService>(c =>
+            services.AddHttpClient<ISpeciesAPI, APIService>(c =>
             {
-                c.BaseAddress = new Uri("https://www.dnd5eapi.co/api/");
+                c.BaseAddress = new Uri("");
             });
-            services.AddScoped<SpeciesAPIService>();
+            services.AddScoped<APIService>();
             //services.AddSingleton<ISpeciesAPI, SpeciesAPIService>();
             //services.AddHttpClient("SpeciesAPICall", c => c.BaseAddress = new Uri("https://www.dnd5eapi.co/api/"));
 

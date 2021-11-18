@@ -10,11 +10,12 @@ namespace PeopleGen.Dal
     public class PeopleService
     {
         private PeopleDbContext _context { get;}
-        PeopleDbContext serviceDbContext = new PeopleDbContext();
+        private APIService _speciesService;
         Random random = new Random();
-        public PeopleService(PeopleDbContext context)
+        public PeopleService(PeopleDbContext context, APIService speciesService)
         {
             this._context = context;
+            this._speciesService = speciesService;
         }
         public List<Person> GetAllPeople()
         {
@@ -30,29 +31,28 @@ namespace PeopleGen.Dal
             }
         public void AddPerson(Person newPerson)
         {
-            serviceDbContext.Persons.Add(newPerson);
-            serviceDbContext.SaveChanges();
+            _context.Persons.Add(newPerson);
+            _context.SaveChanges();
         }
-        public List<Species> GetAllSpecies()
-        {
-            return this._context.Species.ToList();
-        }
+        //public List<Species> GetAllSpecies()
+        //{
+        //    return this._context.Species.ToList();
+        //}
 
-        public void CreateAmount(int amountToCreate)
+        public async void CreateAmount(int amountToCreate)
         {
             int i = 0;
             while(i < amountToCreate)
             {
 
-                AddPerson(CreatePerson());
+                CreatePerson();
                 i++;
             }
         }
-        public Person CreatePerson()
+        public async void CreatePerson()
         {
+
             
-            //Get Species
-            Species selectedSpecies = GetSpecies();
             //get Gender
             string gender = GetGender();
             //get Name
@@ -73,6 +73,8 @@ namespace PeopleGen.Dal
             string personality = GetPersonality();
             //Gets the strengths
             //string personalityStrength = GetPersonalityStrength();
+            //Get Species
+            SpecificSpecies selectedSpecies = GetSpecies();
             Person newPerson = new Person()
             {
                 FirstName = firstName,
@@ -87,19 +89,26 @@ namespace PeopleGen.Dal
                 Charisma = Charisma,
                 Alignment = alignment,
                 //PersonalityStrength = personalityStrength,
-                SpeciesId = selectedSpecies.SpeciesId,
+                SpeciesName = selectedSpecies.Name,
             };
-            return newPerson;
+            AddPerson( newPerson);
 
         }
-        public Species GetSpecies()
+        //public Species GetSpecies()
+        //{
+        //    List<Species> allSpecies = GetAllSpecies();
+        //    int index = random.Next(allSpecies.Count);
+        //    Species selectedSpecies = allSpecies[index];
+        //    return selectedSpecies;
+        //}
+        public SpecificSpecies GetSpecies()
         {
-            List<Species> allSpecies = GetAllSpecies();
+            List<SpecificSpecies> allSpecies =  _speciesService.GetALLSpecies();
             int index = random.Next(allSpecies.Count);
-            Species selectedSpecies = allSpecies[index];
+            SpecificSpecies selectedSpecies = allSpecies[index];
             return selectedSpecies;
         }
-        public string GetGender()
+        public string  GetGender()
         {
             string gender = "male";
             int genderChance = random.Next(1, 101);
@@ -166,10 +175,11 @@ namespace PeopleGen.Dal
         //    return getMood.ToString();
 
         //}
-        public Species GetSpeciesById(int id)
-        {
-            return this._context.Species.Where(species => species.SpeciesId == id).FirstOrDefault();
-        }
+        //public Species GetSpeciesById(int id)
+        //{
+
+        //    return this._context.Species.Where(species => species.SpeciesId == id).FirstOrDefault();
+        //}
         public Civilization GetCivilizationById(int id)
         {
             return this._context.Civilization.Where(civilization => civilization.CityId == id).FirstOrDefault();

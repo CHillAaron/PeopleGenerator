@@ -18,7 +18,7 @@ namespace PeopleGen.Web
         [Required]
         public int Age { get; set; }
         [Required]
-        public int SpeciesId { get; set; }
-        public Species Species { get; set; }
+        public string SpeciesName { get; set; }
+        
     }
 }

@@ -317,8 +317,9 @@ namespace PeopleGen.Dal.Migrations
                     b.Property<string>("PersonalityStrength")
                         .HasColumnType("text");
 
-                    b.Property<int>("SpeciesId")
-                        .HasColumnType("integer");
+                    b.Property<string>("SpeciesName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("Strength")
                         .HasColumnType("integer");
@@ -330,57 +331,7 @@ namespace PeopleGen.Dal.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.HasIndex("SpeciesId");
-
                     b.ToTable("Persons");
-                });
-
-            modelBuilder.Entity("PeopleGen.Core.Species", b =>
-                {
-                    b.Property<int>("SpeciesId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("SpeciesName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("SpeciesId");
-
-                    b.ToTable("Species");
-
-                    b.HasData(
-                        new
-                        {
-                            SpeciesId = 1,
-                            SpeciesName = "Elf"
-                        },
-                        new
-                        {
-                            SpeciesId = 2,
-                            SpeciesName = "Human"
-                        },
-                        new
-                        {
-                            SpeciesId = 3,
-                            SpeciesName = "Orc"
-                        },
-                        new
-                        {
-                            SpeciesId = 4,
-                            SpeciesName = "Dwarf"
-                        },
-                        new
-                        {
-                            SpeciesId = 5,
-                            SpeciesName = "Goliath"
-                        },
-                        new
-                        {
-                            SpeciesId = 6,
-                            SpeciesName = "Kenku"
-                        });
                 });
 
             modelBuilder.Entity("PeopleGen.Core.Business", b =>
@@ -408,15 +359,7 @@ namespace PeopleGen.Dal.Migrations
                         .WithMany("Population")
                         .HasForeignKey("CityId");
 
-                    b.HasOne("PeopleGen.Core.Species", "Species")
-                        .WithMany("persons")
-                        .HasForeignKey("SpeciesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("City");
-
-                    b.Navigation("Species");
                 });
 
             modelBuilder.Entity("PeopleGen.Core.Civilization", b =>
@@ -429,11 +372,6 @@ namespace PeopleGen.Dal.Migrations
             modelBuilder.Entity("PeopleGen.Core.Inventory", b =>
                 {
                     b.Navigation("business");
-                });
-
-            modelBuilder.Entity("PeopleGen.Core.Species", b =>
-                {
-                    b.Navigation("persons");
                 });
 #pragma warning restore 612, 618
         }

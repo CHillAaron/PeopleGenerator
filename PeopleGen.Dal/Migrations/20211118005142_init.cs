@@ -42,19 +42,6 @@ namespace PeopleGen.Dal.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Species",
-                columns: table => new
-                {
-                    SpeciesId = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    SpeciesName = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Species", x => x.SpeciesId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Persons",
                 columns: table => new
                 {
@@ -72,7 +59,7 @@ namespace PeopleGen.Dal.Migrations
                     Charisma = table.Column<int>(type: "integer", nullable: false),
                     Alignment = table.Column<string>(type: "text", nullable: false),
                     PersonalityStrength = table.Column<string>(type: "text", nullable: true),
-                    SpeciesId = table.Column<int>(type: "integer", nullable: false),
+                    SpeciesName = table.Column<string>(type: "text", nullable: false),
                     CityId = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
@@ -84,12 +71,6 @@ namespace PeopleGen.Dal.Migrations
                         principalTable: "Civilization",
                         principalColumn: "CityId",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Persons_Species_SpeciesId",
-                        column: x => x.SpeciesId,
-                        principalTable: "Species",
-                        principalColumn: "SpeciesId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,33 +116,20 @@ namespace PeopleGen.Dal.Migrations
                 values: new object[,]
                 {
                     { 1, "Sickle", "Weapon", false, false, "Copper", "50" },
-                    { 15, "Horse", "General", false, false, "Copper", "1500" },
-                    { 14, "Flute", "General", false, false, "Copper", "75" },
-                    { 13, "Play card", "General", false, false, "Copper", "150" },
-                    { 12, "Disquise Kit", "General", false, false, "Copper", "500" },
-                    { 10, "shield", "Armor", false, false, "Copper", "100" },
-                    { 9, "Plate", "Armor", false, false, "Copper", "15510" },
-                    { 11, "Ration", "General", false, false, "Copper", "5" },
-                    { 7, "Studded leather", "Armor", false, false, "Copper", "510" },
-                    { 6, "padded", "Armor", false, false, "Copper", "150" },
-                    { 5, "Longsword", "Weapon", false, false, "Copper", "5" },
-                    { 4, "Battleaxe", "Weapon", false, false, "Copper", "65" },
-                    { 3, "Greatsword", "Weapon", false, false, "Copper", "150" },
                     { 2, "Shortbow", "Weapon", false, false, "Copper", "75" },
-                    { 8, "Half Plate", "Armor", false, false, "Copper", "1550" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Species",
-                columns: new[] { "SpeciesId", "SpeciesName" },
-                values: new object[,]
-                {
-                    { 5, "Goliath" },
-                    { 1, "Elf" },
-                    { 2, "Human" },
-                    { 3, "Orc" },
-                    { 4, "Dwarf" },
-                    { 6, "Kenku" }
+                    { 3, "Greatsword", "Weapon", false, false, "Copper", "150" },
+                    { 4, "Battleaxe", "Weapon", false, false, "Copper", "65" },
+                    { 5, "Longsword", "Weapon", false, false, "Copper", "5" },
+                    { 6, "padded", "Armor", false, false, "Copper", "150" },
+                    { 7, "Studded leather", "Armor", false, false, "Copper", "510" },
+                    { 8, "Half Plate", "Armor", false, false, "Copper", "1550" },
+                    { 9, "Plate", "Armor", false, false, "Copper", "15510" },
+                    { 10, "shield", "Armor", false, false, "Copper", "100" },
+                    { 11, "Ration", "General", false, false, "Copper", "5" },
+                    { 12, "Disquise Kit", "General", false, false, "Copper", "500" },
+                    { 13, "Play card", "General", false, false, "Copper", "150" },
+                    { 14, "Flute", "General", false, false, "Copper", "75" },
+                    { 15, "Horse", "General", false, false, "Copper", "1500" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -183,11 +151,6 @@ namespace PeopleGen.Dal.Migrations
                 name: "IX_Persons_CityId",
                 table: "Persons",
                 column: "CityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Persons_SpeciesId",
-                table: "Persons",
-                column: "SpeciesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -203,9 +166,6 @@ namespace PeopleGen.Dal.Migrations
 
             migrationBuilder.DropTable(
                 name: "Civilization");
-
-            migrationBuilder.DropTable(
-                name: "Species");
         }
     }
 }

@@ -29,8 +29,8 @@ namespace PeopleGen.Web.Pages
         {
             Input = new PersonViewModel();
             this.AllPeople = this._peopleService.GetAllPeople();
-            this.AllSpecies = this._peopleService.GetAllSpecies();
-            Races = new SelectList(this.AllSpecies, nameof(Species.SpeciesId), nameof(Species.SpeciesName));
+            //this.AllSpecies = this._peopleService.GetAllSpecies();
+            //Races = new SelectList(this.AllSpecies, nameof(Species.SpeciesId), nameof(Species.SpeciesName));
         }
         public IActionResult OnPost(int numToCreate)
         {
